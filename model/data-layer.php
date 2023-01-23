@@ -4,9 +4,9 @@ class DataLayer
 {
     private $_dbh;
 
-    function construct()
+    function __construct()
     {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/advise_it/config.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/../pdo/config.php';
         $this->_dbh = $dbh;
         $this->_dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->_dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -25,18 +25,20 @@ class DataLayer
 
     function createPlan($plan_id)
     {
-        $sql = "INSERT INTO `advising` (`plan_id`) VALUES (:plan_id)";
+        $sql = "INSERT INTO `advising` (`plan_id`, `date`) VALUES (:plan_id, :date)";
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':plan_id', $plan_id, PDO::PARAM_STR);
+        $statement->bindParam(':date', date("Y-m-d G:i:s"), PDO::PARAM_STR);
         $statement->execute();
     }
 
     function addPlan($plan_id, $fall, $winter, $spring, $summer)
     {
 
-        $sql = "INSERT INTO `advising` (`plan_id`, `fall`, `winter`, `spring`, `summer`) VALUES (:plan_id, :fall, :winter, :spring, :summer)";
+        $sql = "INSERT INTO `advising` (`plan_id`, `fall`, `winter`, `spring`, `summer`) VALUES (:planId, :fall, :winter, :spring, :summer)";
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':plan_id', $plan_id, PDO::PARAM_STR);
+        $statement->bindParam(':date', date("Y-m-d G:i:s"), PDO::PARAM_STR);
         $statement->bindParam(':fall', $fall, PDO::PARAM_STR);
         $statement->bindParam(':winter', $winter, PDO::PARAM_STR);
         $statement->bindParam(':spring', $spring, PDO::PARAM_STR);
@@ -50,13 +52,19 @@ class DataLayer
         {
             return false;
         }
-        $sql = "UPDATE `advising` SET fall = :fall, winter = :winter, spring = :spring, summer = :summer WHERE plan_id = :plan_id";
+        $sql = "UPDATE `advising` SET date = :date, fall = :fall, winter = :winter, spring = :spring, summer = :summer WHERE planId = :planId";
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':plan_id', $plan_id, PDO::PARAM_STR);
+        $statement->bindParam(':date', date("Y-m-d G:i:s"), PDO::PARAM_STR);
         $statement->bindParam(':fall', $fall, PDO::PARAM_STR);
         $statement->bindParam(':winter', $winter, PDO::PARAM_STR);
         $statement->bindParam(':spring', $spring, PDO::PARAM_STR);
         $statement->bindParam(':summer', $summer, PDO::PARAM_STR);
         $statement->execute();
+    }
+
+    function dumpPDO()
+    {
+        var_dump($this->_dbh);
     }
 }

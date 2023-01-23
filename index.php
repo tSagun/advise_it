@@ -16,7 +16,7 @@ $f3->route('GET /', function() {
     $GLOBALS['con']->home();
 });
 
-$f3->route('GET /planning', function () {
+$f3->route('GET|POST /planning', function () {
     //echo '<h1>hello world</h1>';
     $GLOBALS['con']->plan();
 });
