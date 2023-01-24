@@ -1,0 +1,14 @@
+textarea {
+    width: 20rem;
+    height: 24rem;
+}
+
+button {
+    font-size: 24px;
+}
+
+@media print {
+    button{
+        display: none;
+    }
+}

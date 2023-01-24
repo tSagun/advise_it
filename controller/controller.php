@@ -33,7 +33,6 @@ class Controller
         }
         $plan_id = $_GET['plan_id'];
         $plan = $GLOBALS['dataLayer']->getPlan($plan_id);
-//        $this->_f3->set('plan', var_dump($plan));
         if (!$plan)
         {
             header("Location: https://tsagun.greenriverdev.com/advise_it");

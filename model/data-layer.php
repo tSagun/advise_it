@@ -46,23 +46,6 @@ class DataLayer
         $statement->execute();
     }
 
-    function editPlan($plan_id, $fall, $winter, $spring, $summer)
-    {
-        if (!$plan_id)
-        {
-            return false;
-        }
-        $sql = "UPDATE `advising` SET date = :date, fall = :fall, winter = :winter, spring = :spring, summer = :summer WHERE planId = :planId";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':plan_id', $plan_id, PDO::PARAM_STR);
-        $statement->bindParam(':date', date("Y-m-d G:i:s"), PDO::PARAM_STR);
-        $statement->bindParam(':fall', $fall, PDO::PARAM_STR);
-        $statement->bindParam(':winter', $winter, PDO::PARAM_STR);
-        $statement->bindParam(':spring', $spring, PDO::PARAM_STR);
-        $statement->bindParam(':summer', $summer, PDO::PARAM_STR);
-        $statement->execute();
-    }
-
     function dumpPDO()
     {
         var_dump($this->_dbh);

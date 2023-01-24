@@ -9,15 +9,17 @@ if ($_POST['planId'])
 {
     $planId = $_POST['planId'];
     $date = date("Y-m-d G:i:s");
+    $advisor = $_POST['advisor'];
     $fall = $_POST['fall'];
     $winter = $_POST['winter'];
     $spring = $_POST['spring'];
     $summer = $_POST['summer'];
 
-    $sql = "UPDATE `advising` SET date = :date, fall = :fall, winter = :winter, spring = :spring, summer = :summer WHERE plan_id = :plan_id";
+    $sql = "UPDATE `advising` SET date = :date, advisor = :advisor fall = :fall, winter = :winter, spring = :spring, summer = :summer WHERE plan_id = :plan_id";
     $statement = $dbh->prepare($sql);
     $statement->bindParam(':plan_id', $planId, PDO::PARAM_STR);
     $statement->bindParam(':date', $date, PDO::PARAM_STR);
+    $statement->bindParam(':advisor', $advisor, PDO::PARAM_STR);
     $statement->bindParam(':fall', $fall, PDO::PARAM_STR);
     $statement->bindParam(':winter', $winter, PDO::PARAM_STR);
     $statement->bindParam(':spring', $spring, PDO::PARAM_STR);
