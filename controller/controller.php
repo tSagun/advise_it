@@ -33,6 +33,7 @@ class Controller
         }
         $plan_id = $_GET['plan_id'];
         $plan = $GLOBALS['dataLayer']->getPlan($plan_id);
+//        $this->_f3->set('plan', var_dump($plan));
         if (!$plan)
         {
             header("Location: https://tsagun.greenriverdev.com/advise_it");
@@ -46,6 +47,8 @@ class Controller
         $this->_f3->set('spring', $plan['spring']);
         $this->_f3->set('summer', $plan['summer']);
         $this->_f3->set('advisor', $plan['advisor']);
+        $this->_f3->set('school_year', $plan['school_year']);
+        $this->_f3->set('previous_school_year', $plan['school_year'] - 1);
         $_GET['plan_id'] = $plan_id;
         $view = new Template();
         echo $view->render('views/planning.php');

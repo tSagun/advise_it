@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="container text-center">
+    $enable-shadows
     <h1>Advise-It Planning</h1>
     <h2>Plan ID: {{@plan_id}}</h2>
     <h2>Last update was made on: <span id="date">{{@date}} UTC</span></h2>
@@ -18,13 +19,13 @@
             <div class="col">
                 <div class="card my-3">
                     <div class="card-body justify-content-center">
-                        <h5 class="card-title">Fall</h5>
+                        <h5 class="card-title">Fall {{@previous_school_year}}</h5>
                         <textarea id="fall" name="fall">{{@fall}}</textarea>
                     </div>
                 </div>
                 <div class="card my-3">
                     <div class="card-body">
-                        <h5 class="card-title">Winter</h5>
+                        <h5 class="card-title">Winter {{@school_year}}</h5>
                         <textarea id="winter" name="winter">{{@winter}}</textarea>
                     </div>
                 </div>
@@ -32,13 +33,13 @@
             <div class="col">
                 <div class="card my-3">
                     <div class="card-body">
-                        <h5 class="card-title">Spring</h5>
+                        <h5 class="card-title">Spring {{@school_year}}</h5>
                         <textarea id="spring" name="spring">{{@spring}}</textarea>
                     </div>
                 </div>
                 <div class="card my-3">
                     <div class="card-body">
-                        <h5 class="card-title">Summer</h5>
+                        <h5 class="card-title">Summer {{@school_year}}</h5>
                         <textarea id="summer" name="summer">{{@summer}}</textarea>
                     </div>
                 </div>
